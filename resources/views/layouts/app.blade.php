@@ -8,10 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simon</title>
+    <title>FunFunShowFun</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{url('/css/bootstrap.css')}}" type="text/css">
+    <style type="text/css">
+       body { background: #f7f7f7 } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    </style>
 
 
     @yield('header')
