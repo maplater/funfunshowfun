@@ -15,14 +15,14 @@
                         {!! Form::open(['url' => 'search']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('city','City:') !!}
+                            {!! Form::label('city','City (e.g. New York City):') !!}
                             {!! Form::text('city', null, ['class' => 'form-control']) !!}
                         </div>
 
 
 
                         <div class=form-group">
-                            {!! Form::label('genre','Genre:') !!}
+                            {!! Form::label('genre','Genre (hip hop, pop, jazz, indie small genre no one has ever heard of..., etc..):') !!}
                             {!! Form::text('genre', null, ['class' => 'form-control']) !!}
 
                         </div><br/>
