@@ -9,7 +9,7 @@
             @include('flash::message')
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Search for shows</div>
+                    <div class="panel-heading">Search for live music by the genre</div>
 
                     <div class="panel-body">
                         {!! Form::open(['url' => 'search']) !!}
