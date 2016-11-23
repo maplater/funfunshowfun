@@ -163,7 +163,7 @@ class ArtistRepository {
                 foreach ($body->toptags->tag as $t) {
 
                     $tag[] = $t->name;
-                    if($tagCount == 10){
+                    if($tagCount == 20){
                         break;
                     }
                     $tagCount++;
