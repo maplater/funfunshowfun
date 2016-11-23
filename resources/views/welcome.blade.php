@@ -15,7 +15,7 @@
                         {!! Form::open(['url' => 'search']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('city','City (e.g. San Francisco) Larger cities may take a few more moments to search:') !!}
+                            {!! Form::label('city','City (e.g. San Francisco) Larger cities may take a few extra moments to search:') !!}
                             {!! Form::text('city', null, ['class' => 'form-control']) !!}
                         </div>
 
