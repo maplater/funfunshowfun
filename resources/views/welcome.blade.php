@@ -48,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <img width=100% src="http://i.imgur.com/xK3vePm.png" align="middle">
+                <img width=100% src="{{url('/img/hero.png')}}" align="middle">
             </div>
             <div class="col-md-1">
 
