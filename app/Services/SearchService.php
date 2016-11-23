@@ -42,7 +42,7 @@ class SearchService {
 
         ((!empty($events)) ? $filteredEvents = $this->filterEventsbyDate($events, $input['date']) : $eventFlag = 1);
         ((!empty($filteredEvents) && $eventFlag == 0) ? $genredEvents = $this->artistService->getGenresforArtists($filteredEvents) : $eventFlag = 1);
-        ((!empty($genredEvents) && $eventFlag == 0) ? $filteredGenredEvents = $this->filterEventsbyGenre($genredEvents, $input['genre']) : $eventFlag = 1);
+        ((!empty($genredEvents) && $eventFlag == 0 && !empty($input['genre'])) ? $filteredGenredEvents = $this->filterEventsbyGenre($genredEvents, $input['genre']) : $eventFlag = 1);
         ((!empty($filteredGenredEvents) && $eventFlag == 0) ? $linkedEvents = $this->artistService->getYoutubeLinksforArtists($filteredGenredEvents) : $eventFlag = 1);
 
 
