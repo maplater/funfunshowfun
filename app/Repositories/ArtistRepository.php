@@ -9,16 +9,136 @@
 namespace App\Repositories;
 
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7;
+
 
 class ArtistRepository {
 
-    public function getGenresforArtists($events)
+    public function getGenresforArtists($genreEvents)
+    {
+
+        $genreEvents = $this->getGenresfromLastFM($genreEvents);
+
+        $genreEvents = $this->getGenresfromSpotify($genreEvents);
+
+
+        return $genreEvents;
+
+    }
+
+    public function getGenresfromSpotify($events)
+    {
+        $client = new Client();
+        $genreEvents = Null;
+
+
+        $response = $client->request(
+            'POST',
+            'https://accounts.spotify.com/api/token',
+            [
+                'form_params' =>
+                    [
+                        'grant_type' => 'client_credentials'
+
+                    ],
+                'headers' =>
+                    [
+                        'Authorization' => 'Basic ' . base64_encode(env('SPOTIFY_CLIENT_ID') . ':' . env('SPOTIFY_CLIENT_SECRET'))
+
+                    ]
+            ]
+        );
+
+        $body = json_decode($response->getbody());
+
+        $accessToken = $body->access_token;
+
+        foreach($events as $event) {
+            try {
+                $response = $client->request(
+                    'GET',
+                    'https://api.spotify.com/v1/search',
+                    [
+                        'query' =>
+                            [
+                                'q' => $event['artist_name'],
+                                'type' => 'artist',
+                                'limit' => 1
+
+                            ],
+                        'headers' =>
+                            [
+                                'Authorization' => 'Bearer ' . $accessToken
+
+                            ]
+                    ]
+                );
+
+                $body = json_decode($response->getbody());
+
+
+                if (!empty($body->artists->items[0]->genres)) {
+                    $tag = array();
+                    foreach ($body->artists->items[0]->genres as $t) {
+
+                        $tag[] = html_entity_decode($t);
+
+                    }
+
+                    if(isset($event['genres'])) {
+
+                        $event['genres'] = array_merge($event['genres'], $tag);
+
+                    }else{
+
+                        $event['genres'] = $tag;
+                    }
+
+                    $event['spotify_url'] = $body->artists->items[0]->external_urls->spotify;
+
+                } else {
+                    if(!isset($event['genres'])) {
+                        $event['genres'] = array();
+                    }
+                }
+
+                $genreEvents[] = $event;
+
+
+            } catch(ClientException $e){
+                $responseError =  json_decode($e->getResponse()->getBody());
+
+
+                if($responseError->error->status == 429){
+
+                    $responseHeaderRetry =  $e->getResponse()->getHeader('Retry-After');
+
+                    sleep($responseHeaderRetry[0]);
+
+                    prev($events);
+
+                }
+
+
+            }
+
+
+        }
+
+
+        return $genreEvents;
+
+    }
+
+    public function getGenresfromLastFM($events)
     {
         $client = new Client();
         $genreEvents = Null;
 
         foreach($events as $event) {
+
 
 
             $response = $client->request(
@@ -37,32 +157,40 @@ class ArtistRepository {
 
             $body = json_decode($response->getbody());
 
-            if(isset($body->toptags)){
+            if (isset($body->toptags)) {
                 $tag = array();
-                foreach($body->toptags->tag as $t){
+                $tagCount = 1;
+                foreach ($body->toptags->tag as $t) {
+
                     $tag[] = $t->name;
+                    if($tagCount == 10){
+                        break;
+                    }
+                    $tagCount++;
 
                 }
-                $event['genres'] = $tag;
+                if(isset($event['genres'])) {
 
-            }else{
-                $event['genres'] = NULL;
+                    $event['genres'] = array_merge($event['genres'], $tag);
+
+                }else{
+
+                    $event['genres'] = $tag;
+                }
+
+            } else {
+                if(!isset($event['genres'])) {
+                    $event['genres'] = array();
+                }
             }
 
             $genreEvents[] = $event;
-
         }
-        /*if(empty($genreEvents)){
-
-            $genreEvents = $this->getGenresfromSoundCloud($events);
-
-        }*/
 
         return $genreEvents;
-
     }
 
-    public function getGenresfromSoundCloud($events)
+    public function getGenresfromSoundCloud($genreEvents)
     {
 
 

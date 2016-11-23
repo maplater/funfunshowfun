@@ -17,6 +17,11 @@
                                     <h6><strong>Venue:  </strong>{{$event['venue_name']}}</h6>
                                     <h6><strong>Time:  </strong>{{$event['time']}}</h6>
                                     <h6><strong>Event:  </strong>{{$event['event_name']}}</h6>
+                                    <h6><strong>Genres: </strong>
+                                        @foreach($event['genres'] as $genre)
+                                            {{$genre}},
+                                        @endforeach
+                                    </h6>
 
                                </div>
                                <div class="col-md-6">

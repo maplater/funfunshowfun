@@ -9,20 +9,20 @@
             @include('flash::message')
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Search for live music by the genre</div>
+                    <div class="panel-heading">Discover where your favorite kind of music is playing</div>
 
                     <div class="panel-body">
                         {!! Form::open(['url' => 'search']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('city','City (e.g. New York City):') !!}
+                            {!! Form::label('city','City (e.g. San Francisco) Larger cities may take a few more moments to search:') !!}
                             {!! Form::text('city', null, ['class' => 'form-control']) !!}
                         </div>
 
 
 
                         <div class=form-group">
-                            {!! Form::label('genre','Genre (hip hop, pop, jazz, indie small genre no one has ever heard of..., etc..):') !!}
+                            {!! Form::label('genre','Genre (indie, pop, trap, hip hop, etc..):') !!}
                             {!! Form::text('genre', null, ['class' => 'form-control']) !!}
 
                         </div><br/>

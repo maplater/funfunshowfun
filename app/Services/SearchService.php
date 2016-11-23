@@ -67,10 +67,11 @@ class SearchService {
         $filteredGenreEvents = NULL;
         foreach($events as $event){
 
-            if(isset($event['genres'])) {
+            if(!empty($event['genres'])) {
 
                 foreach ($event['genres'] as $eventGenre) {
-                    if ($genre == $eventGenre) {
+                    if (strpos(strtolower($eventGenre), strtolower($genre)) !== FALSE) {
+                    //if ($eventGenre == $genre) {
 
                         $filteredGenreEvents[] = $event;
                         break;
@@ -86,6 +87,7 @@ class SearchService {
 
     public function filterEventsbyDate($events,$date)
     {
+        $filteredEvents = NULL;
         foreach($events as $event){
 
             $eventDate = new Carbon($event['datetime']);
