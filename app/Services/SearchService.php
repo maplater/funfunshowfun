@@ -65,18 +65,23 @@ class SearchService {
     public function filterEventsbyGenre($events, $genre)
     {
         if(!empty($genre)) {
+
+            $genreList = explode(',',$genre);
+
             $filteredGenreEvents = NULL;
             foreach ($events as $event) {
 
                 if (!empty($event['genres'])) {
 
                     foreach ($event['genres'] as $eventGenre) {
-                        if (strpos(strtolower($eventGenre), strtolower($genre)) !== FALSE) {
-                            //if ($eventGenre == $genre) {
+                        foreach($genreList as $g) {
+                            if (strpos(strtolower($eventGenre), strtolower(trim($g))) !== FALSE) {
+                                //if ($eventGenre == $genre) {
 
-                            $filteredGenreEvents[] = $event;
-                            break;
+                                $filteredGenreEvents[] = $event;
+                                break 2;
 
+                            }
                         }
                     }
                 }

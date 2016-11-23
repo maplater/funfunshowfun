@@ -9,7 +9,7 @@
             @include('flash::message')
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Discover where your favorite kind of music is playing</div>
+
 
                     <div class="panel-body">
                         {!! Form::open(['url' => 'search']) !!}
@@ -22,7 +22,7 @@
 
 
                         <div class=form-group">
-                            {!! Form::label('genre','Genre (indie, pop, trap, hip hop, etc..):') !!}
+                            {!! Form::label('genre','Genre(s) (indie, pop, trap, hip hop, etc..):') !!}
                             {!! Form::text('genre', null, ['class' => 'form-control']) !!}
 
                         </div><br/>
