@@ -43,6 +43,19 @@
 
                     </div>
                 </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img width=100% src="http://i.imgur.com/xK3vePm.png" align="middle">
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-5">
+                <h1>Discover where your favorite kind of music playing</h1>
+                <h3>Search a city for shows playing any kind of genre.</h3>
             </div>
         </div>
     </div>

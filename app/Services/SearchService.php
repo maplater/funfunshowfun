@@ -42,7 +42,7 @@ class SearchService {
 
         ((!empty($events)) ? $filteredEvents = $this->filterEventsbyDate($events, $input['date']) : $eventFlag = 1);
         ((!empty($filteredEvents) && $eventFlag == 0) ? $genredEvents = $this->artistService->getGenresforArtists($filteredEvents) : $eventFlag = 1);
-        ((!empty($genredEvents) && $eventFlag == 0 && !empty($input['genre'])) ? $filteredGenredEvents = $this->filterEventsbyGenre($genredEvents, $input['genre']) : $eventFlag = 1);
+        ((!empty($genredEvents) && $eventFlag == 0) ? $filteredGenredEvents = $this->filterEventsbyGenre($genredEvents, $input['genre']) : $eventFlag = 1);
         ((!empty($filteredGenredEvents) && $eventFlag == 0) ? $linkedEvents = $this->artistService->getYoutubeLinksforArtists($filteredGenredEvents) : $eventFlag = 1);
 
 
@@ -64,22 +64,26 @@ class SearchService {
 
     public function filterEventsbyGenre($events, $genre)
     {
-        $filteredGenreEvents = NULL;
-        foreach($events as $event){
+        if(!empty($genre)) {
+            $filteredGenreEvents = NULL;
+            foreach ($events as $event) {
 
-            if(!empty($event['genres'])) {
+                if (!empty($event['genres'])) {
 
-                foreach ($event['genres'] as $eventGenre) {
-                    if (strpos(strtolower($eventGenre), strtolower($genre)) !== FALSE) {
-                    //if ($eventGenre == $genre) {
+                    foreach ($event['genres'] as $eventGenre) {
+                        if (strpos(strtolower($eventGenre), strtolower($genre)) !== FALSE) {
+                            //if ($eventGenre == $genre) {
 
-                        $filteredGenreEvents[] = $event;
-                        break;
+                            $filteredGenreEvents[] = $event;
+                            break;
 
+                        }
                     }
                 }
-            }
 
+            }
+        }else{
+            $filteredGenreEvents = $events;
         }
 
         return $filteredGenreEvents;
