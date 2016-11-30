@@ -25,9 +25,10 @@
 
                                </div>
                                <div class="col-md-6">
-                                    <a class="embedly-card" data-card-key="d0d2164791eb47209eb8d3af19aaacf5" data-card-controls="0" href="{{$event['youtube_link']}}">{{$event['artist_name']}}</a>
 
-
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="{{$event['youtube_link']}}"></iframe>
+                                    </div>
                                </div>
                             </div>
 

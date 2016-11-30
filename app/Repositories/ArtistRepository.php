@@ -226,7 +226,7 @@ class ArtistRepository {
 
             $body = json_decode($response->getbody());
 
-            $youtube_link = 'https://www.youtube.com/watch?v=' . $body->items[0]->id->videoId;
+            $youtube_link = 'https://www.youtube.com/embed/' . $body->items[0]->id->videoId;
 
             $event['youtube_link'] = $youtube_link;
 
