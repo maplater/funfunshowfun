@@ -25,7 +25,7 @@
 
                                </div>
                                <div class="col-md-6">
-                                    <a class="embedly-card" data-card-key="191f814144764bc5942760e96b88e4b8" data-card-controls="0" href="{{$event['youtube_link']}}">{{$event['artist_name']}}</a>
+                                    <a class="embedly-card" data-card-key="d0d2164791eb47209eb8d3af19aaacf5" data-card-controls="0" href="{{$event['youtube_link']}}">{{$event['artist_name']}}</a>
 
 
                                </div>

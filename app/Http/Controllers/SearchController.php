@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
 use App\Services\SearchService;
+
 
 class SearchController extends Controller
 {
@@ -28,4 +30,6 @@ class SearchController extends Controller
         }
 
     }
+
+
 }

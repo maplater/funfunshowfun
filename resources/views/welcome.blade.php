@@ -12,7 +12,7 @@
 
 
                     <div class="panel-body">
-                        {!! Form::open(['url' => 'search']) !!}
+                        {!! Form::open(['url' => 'search' , 'method' => 'GET']) !!}
 
                         <div class="form-group">
                             {!! Form::label('city','City (e.g. San Francisco) Larger cities may take a few extra moments to search:') !!}
@@ -22,7 +22,7 @@
 
 
                         <div class=form-group">
-                            {!! Form::label('genre','Genre(s) (indie, pop, trap, hip hop, etc..):') !!}
+                            {!! Form::label('genre','Genre(s) (indie, pop, house, hip hop, etc..):') !!}
                             {!! Form::text('genre', null, ['class' => 'form-control']) !!}
 
                         </div><br/>

@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 
@@ -18,4 +20,6 @@ Route::get('/', function () {
 
 });
 
-Route::post('search','SearchController@receive');
+Route::get('search','SearchController@receive');
+
+

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="{{ url('/') }}"><span style="font-size: 30px">FunFunShowFun</span> - Discover where your favorite kind of music is playing</a>
+            <a class="navbar-brand page-scroll" href="{{ url('/') }}"><span style="font-size: 30px">FunFunShowFun</span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
