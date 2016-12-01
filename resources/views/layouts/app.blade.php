@@ -37,7 +37,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{url('/js/bootstrap.js')}}"></script>
 
-    <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+    
 
 </body>
 </html>
