@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
 use App\Services\SearchService;
+use Carbon\Carbon;
 
 
 class SearchController extends Controller
@@ -15,7 +16,7 @@ class SearchController extends Controller
         $events = $searchService->search($input);
         $city = title_case($input['city']);
         $genre = title_case($input['genre']);
-        $date = $input['date'];
+        $date = Carbon::parse($input['date'])->format('l M\\, jS Y');
 
         if(isset($events)){
 

@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-
+use Carbon\Carbon;
 
 class CityRepository
 {
@@ -84,7 +84,7 @@ class CityRepository
                             $events[$count]['artist_id'] = $artist->id;
                             $events[$count]['datetime'] = $event->start->datetime;
                             $events[$count]['popularity'] = $event->popularity;
-                            $events[$count]['time'] = $event->start->time;
+                            $events[$count]['time'] = Carbon::parse($event->start->time)->format('g:i A');;
                             $events[$count]['songkick_url'] = $event->uri;
                             $events[$count]['event_name'] = $event->displayName;
                         }

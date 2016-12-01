@@ -11,7 +11,7 @@
 
                         <div class="panel-body">
                             @foreach($events as $event)
-                            <div class="row">
+                            <div class="row" style="padding-bottom:10px;">
                                 <div class="col-md-6">
                                     <h1>{{$event['artist_name']}}</h1>
                                     <h6><strong>Venue:  </strong>{{$event['venue_name']}}</h6>
@@ -30,6 +30,7 @@
                                         <iframe class="embed-responsive-item" src="{{$event['youtube_link']}}"></iframe>
                                     </div>
                                </div>
+                               <br/>
                             </div>
 
                             @endforeach
