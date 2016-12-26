@@ -54,7 +54,7 @@
 
             </div>
             <div class="col-md-5">
-                <h1>Discover where your favorite kind of music playing</h1>
+                <h1>Discover where your favorite kind of music is playing</h1>
                 <h3>Search a city for shows playing any kind of genre.</h3>
             </div>
         </div>
